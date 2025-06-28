@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun, Bebiii Cintaku!</title>
+    <!-- Memuat Tailwind CSS dari CDN untuk styling yang mudah -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya kustom untuk memastikan video mengisi seluruh latar belakang */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100; /* Menempatkan video di belakang konten lain */
+            background-size: cover;
+            /* Memastikan video menyebar tanpa terdistorsi */
+            object-fit: cover;
+        }
+
+        /* Gaya untuk font Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Mencegah scroll yang tidak diinginkan */
+        }
+
+        /* Overlay untuk membuat teks lebih mudah dibaca di atas video */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Lapisan gelap transparan */
+            z-index: -99;
+        }
+
+        /* Animasi teks ucapan */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-text {
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        /* Animasi foto */
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .zoom-in-photo {
+            animation: zoomIn 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-white">
+
+    <!-- Video Latar Belakang -->
+    <!-- Ganti 'your-video.mp4' dengan path ke file video Anda -->
+    <video autoplay muted loop class="video-background">
+        <source src="Pixar_Birthday_Video_Ready_.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+
+    <!-- Overlay untuk readability -->
+    <div class="overlay"></div>
+
+    <!-- Audio Latar Belakang -->
+    <!-- Ganti 'your-music.mp3' dengan path ke file musik Anda -->
+    <audio id="background-music" autoplay loop>
+        <source src="[1 HOUR] HAPPY BIRTHDAY _ RELAXING PIANO INSTRUMENTAL _ ROMANTIC BALLAD SENTIMENTAL _ Improvised.mp3" type="audio/mp3">
+        Browser Anda tidak mendukung tag audio.
+    </audio>
+
+    <div class="relative z-10 p-8 bg-black bg-opacity-70 rounded-3xl shadow-xl max-w-4xl w-full mx-4 sm:mx-8 md:mx-12 lg:mx-auto flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+        <!-- Foto Pacar Anda -->
+        <!-- Ganti 'your-girlfriend-photo.jpg' dengan path ke file foto Anda -->
+        <div class="flex-shrink-0 zoom-in-photo">
+            <img src="love.jpg" alt="Foto Pacar Anda" class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-pink-500 shadow-lg">
+        </div>
+
+        <!-- Pesan Ucapan Ulang Tahun -->
+        <div class="text-center md:text-left fade-in-text">
+            <h1 class="text-xl sm:text-xl md:text-4xl font-bold text-pink-400 mb-4 drop-shadow-lg">
+                Selamat Ulang Tahun, Bebii My Lovee!
+            </h1>
+            <p class="text-lg sm:text-xl md:text-xl text-gray-200 leading-relaxed drop-shadow-md">
+                I’m grateful every day because God brought you into my life. You are the reason I smile, the reason I rise from all my exhaustion.
+Today is a special day, Bebiinduttt, because the one I love most was born into this world.
+Thank you for loving me so sincerely. Thank you for being my home, my storyteller, and the keeper of my heart.
+I don’t know how to live without you, and I don’t want to know. Because every second with you is an irreplaceable blessing.
+Happy birthday, Bebi my love. May all your dreams and wishes come true, and I pray I can always be by your side —in laughter, in tears, in love, forever.
+I love you. Today, tomorrow, and always. 💖
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mencoba memutar musik setelah interaksi pengguna
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('background-music');
+            // Coba putar musik secara otomatis. Jika gagal (karena kebijakan browser),
+            // tambahkan event listener untuk memutarnya saat ada interaksi.
+            music.play().catch(error => {
+                console.log('Autoplay blocked, waiting for user interaction:', error);
+                document.body.addEventListener('click', () => {
+                    music.play().catch(e => console.error('Failed to play music on click:', e));
+                }, { once: true }); // Hanya perlu sekali interaksi
+            });
+        });
+    </script>
+</body>
+</html>
